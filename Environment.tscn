@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://FilterViewPort.tscn" type="PackedScene" id=1]
+[ext_resource path="res://bath.tscn" type="PackedScene" id=2]
+[ext_resource path="res://bath.gd" type="Script" id=3]
+[ext_resource path="res://lawahbackground.png" type="Texture" id=4]
+[ext_resource path="res://Ground.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Environment.gd" type="Script" id=6]
+
+[node name="Environment" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="lawahbackground" type="Sprite" parent="."]
+position = Vector2( 519.103, 269.946 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 4 )
+
+[node name="Ground" parent="." instance=ExtResource( 5 )]
+position = Vector2( 508.981, 518.494 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 1033.0
+margin_bottom = 603.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport2" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1024, 600 )
+size_override_stretch = true
+transparent_bg = true
+handle_input_locally = false
+msaa = 1
+hdr = false
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+physics_object_picking = true
+
+[node name="bath" parent="." instance=ExtResource( 2 )]
+position = Vector2( 466.831, 310.033 )
+scale = Vector2( 0.02, 0.02 )
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="filter_viewport" parent="CanvasLayer" instance=ExtResource( 1 )]
+visible = false
